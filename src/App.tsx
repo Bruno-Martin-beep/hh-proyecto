@@ -1,64 +1,34 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import OptionsSelector from "./components/OptionsSelector";
 import EmailForm from "./components/EmailForm";
 import Success from "./components/Success";
-import { get, Option, Value } from "./utils/fetchData";
+import { Value } from "./utils/fetchData";
+import useOptions from "./hooks/useOptions";
 // import Card from "./components/Card";
 
-export interface State {
-  optionSelected: Value | "";
-  isSuccess: Boolean;
-}
+type Pasos = "step 1" | "step 2" | "success";
 
 function App() {
-  const [state, setState] = useState<State>({
-    optionSelected: "",
-    isSuccess: false,
-  });
+  const [step, setStep] = useState<Pasos>("step 1");
+  const [optionSelected, setOptionSelected] = useState<Value | null>(null);
 
-  const [options, setOptions] = useState<Option[]>([]);
-
-  useEffect(() => {
-    get()
-      .then((data) => setOptions(data))
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
-
-  const addOption = (option: Value) => {
-    setState((prev: State) => {
-      return { ...prev, optionSelected: option };
-    });
-  };
-
-  const EmailSuccess = () => {
-    setState((prev: State) => {
-      return { ...prev, isSuccess: true };
-    });
-  };
-
-  const resetState = () => {
-    setState({
-      optionSelected: "",
-      isSuccess: false,
-    });
-  };
+  const options = useOptions();
 
   return (
     <div className="App">
       <header className="App-header">
-        {!state.optionSelected && (
-          <OptionsSelector options={options} addOption={addOption} />
-        )}
-        {state.optionSelected && !state.isSuccess && (
-          <EmailForm
-            optionSelected={state.optionSelected}
-            EmailSuccess={EmailSuccess}
+        {step === "step 1" && (
+          <OptionsSelector
+            options={options}
+            setOptionSelected={setOptionSelected}
+            setStep={setStep}
           />
         )}
-        {state.isSuccess && <Success resetState={resetState} />}
+        {step === "step 2" && optionSelected && (
+          <EmailForm optionSelected={optionSelected} setStep={setStep} />
+        )}
+        {step === "success" && <Success setStep={setStep} />}
         {/* <Card /> */}
       </header>
     </div>

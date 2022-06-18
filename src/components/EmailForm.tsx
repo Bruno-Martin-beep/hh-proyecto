@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { emailRegex } from "../utils/emailRegex";
-import { post, Value } from "../utils/fetchData";
+import { postData, Value } from "../utils/fetchData";
 
 interface Props {
   optionSelected: Value;
-  EmailSuccess: Function;
+  setStep: Function;
 }
 
-const EmailForm = ({ optionSelected, EmailSuccess }: Props) => {
+const EmailForm = ({ optionSelected, setStep }: Props) => {
   const [email, setEmail] = useState<string>("");
   const [showError, setShowError] = useState(false);
 
@@ -17,21 +17,17 @@ const EmailForm = ({ optionSelected, EmailSuccess }: Props) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (emailRegex.test(email)) {
       setShowError(false);
 
-      post({ email: email, option: optionSelected })
-        .then((data) => {
-          if (data.error) {
-            setShowError(true);
-          } else {
-            EmailSuccess();
-          }
-        })
-
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      postData({ email: email, option: optionSelected }).then((data) => {
+        if (data.error) {
+          setShowError(true);
+        } else {
+          setStep("success");
+        }
+      });
     } else {
       setShowError(true);
     }

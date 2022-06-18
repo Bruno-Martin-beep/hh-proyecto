@@ -1,12 +1,12 @@
 import iconSuccess from "../assets/icon-success.svg";
 
 interface Props {
-  resetState: Function;
+  setStep: Function;
 }
 
-const Success = ({ resetState }: Props) => {
+const Success = ({ setStep }: Props) => {
   const handleClick = () => {
-    resetState()
+    setStep("step 1");
   };
 
   return (

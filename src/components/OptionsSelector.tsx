@@ -4,15 +4,16 @@ import { Option, Value } from "../utils/fetchData";
 
 interface Props {
   options: Option[];
-  addOption: Function;
+  setOptionSelected: Function;
+  setStep: Function;
 }
 
-const OptionsSelector = ({ options, addOption }: Props) => {
-  const [currentOption, setCurrentOption] = useState<Value | "">("");
+const OptionsSelector = ({ options, setOptionSelected, setStep }: Props) => {
+  const [currentOption, setCurrentOption] = useState<Value | null>(null);
 
   const handleOption = (value: Value) => {
     if (currentOption === value) {
-      setCurrentOption("");
+      setCurrentOption(null);
       return;
     }
     setCurrentOption(value);
@@ -21,7 +22,8 @@ const OptionsSelector = ({ options, addOption }: Props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (currentOption) {
-      addOption(currentOption);
+      setOptionSelected(currentOption);
+      setStep("step 2");
     }
   };
 
