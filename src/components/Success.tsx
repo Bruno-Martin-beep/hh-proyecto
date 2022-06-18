@@ -1,7 +1,9 @@
+import { Dispatch } from "react";
+import { Step } from "../App";
 import iconSuccess from "../assets/icon-success.svg";
 
 interface Props {
-  setStep: Function;
+  setStep: Dispatch<Step>;
 }
 
 const Success = ({ setStep }: Props) => {

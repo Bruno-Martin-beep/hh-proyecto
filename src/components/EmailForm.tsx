@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
+import { Step } from "../App";
 import { emailRegex } from "../utils/emailRegex";
 import { postData, Value } from "../utils/fetchData";
 
 interface Props {
   optionSelected: Value;
-  setStep: Function;
+  setStep: Dispatch<Step>;
 }
 
 const EmailForm = ({ optionSelected, setStep }: Props) => {

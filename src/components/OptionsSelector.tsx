@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import classNames from "classnames";
 import { Option, Value } from "../utils/fetchData";
+import { Step } from "../App";
 
 interface Props {
   options: Option[];
-  setOptionSelected: Function;
-  setStep: Function;
+  setOptionSelected: Dispatch<Value>;
+  setStep: Dispatch<Step>;
 }
 
 const OptionsSelector = ({ options, setOptionSelected, setStep }: Props) => {

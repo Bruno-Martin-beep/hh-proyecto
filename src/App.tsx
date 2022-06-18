@@ -7,10 +7,10 @@ import { Value } from "./utils/fetchData";
 import useOptions from "./hooks/useOptions";
 // import Card from "./components/Card";
 
-type Pasos = "step 1" | "step 2" | "success";
+export type Step = "step 1" | "step 2" | "success";
 
 function App() {
-  const [step, setStep] = useState<Pasos>("step 1");
+  const [step, setStep] = useState<Step>("step 1");
   const [optionSelected, setOptionSelected] = useState<Value | null>(null);
 
   const options = useOptions();
