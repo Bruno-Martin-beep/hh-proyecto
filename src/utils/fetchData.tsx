@@ -7,7 +7,7 @@ export interface Option {
   image: string;
 }
 
-export const get = async (): Promise<Option[]> => {
+export const getData = async (): Promise<Option[]> => {
   const URL_GET = "https://api-demo-hh.vercel.app/api/options";
 
   const data = await fetch(URL_GET)
@@ -30,7 +30,7 @@ export interface Response {
   message: string;
 }
 
-export const post = async (info: Info): Promise<Response> => {
+export const postData = async (info: Info): Promise<Response> => {
   const URL_POST_BASE = `https://api-demo-hh.vercel.app/api/send?email=${info.email}&option=${info.option}`;
 
   const data = fetch(URL_POST_BASE, {
