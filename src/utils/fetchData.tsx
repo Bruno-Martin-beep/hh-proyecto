@@ -1,8 +1,8 @@
 
-export type Value = "A" | "B" | "C";
+export type OptionValue = "A" | "B" | "C";
 
 export interface Option {
-  value: Value;
+  value: OptionValue;
   label: string;
   image: string;
 }
@@ -22,7 +22,7 @@ export const getData = async (): Promise<Option[]> => {
 
 interface Info {
   email: string;
-  option: Value;
+  option: OptionValue;
 }
 
 export interface Response {

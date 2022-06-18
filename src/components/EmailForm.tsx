@@ -1,10 +1,10 @@
 import React, { Dispatch, useState } from "react";
 import { Step } from "../App";
 import { emailRegex } from "../utils/emailRegex";
-import { postData, Value } from "../utils/fetchData";
+import { postData, OptionValue } from "../utils/fetchData";
 
 interface Props {
-  optionSelected: Value;
+  optionSelected: OptionValue;
   setStep: Dispatch<Step>;
 }
 

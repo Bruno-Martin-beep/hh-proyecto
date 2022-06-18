@@ -1,18 +1,18 @@
 import { Dispatch, useState } from "react";
 import classNames from "classnames";
-import { Option, Value } from "../utils/fetchData";
+import { Option, OptionValue } from "../utils/fetchData";
 import { Step } from "../App";
 
 interface Props {
   options: Option[];
-  setOptionSelected: Dispatch<Value>;
+  setOptionSelected: Dispatch<OptionValue>;
   setStep: Dispatch<Step>;
 }
 
 const OptionsSelector = ({ options, setOptionSelected, setStep }: Props) => {
-  const [currentOption, setCurrentOption] = useState<Value | null>(null);
+  const [currentOption, setCurrentOption] = useState<OptionValue | null>(null);
 
-  const handleOption = (value: Value) => {
+  const handleOption = (value: OptionValue) => {
     if (currentOption === value) {
       setCurrentOption(null);
       return;
