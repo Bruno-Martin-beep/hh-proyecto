@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 html {
   height: -webkit-fill-available;
 }
@@ -9,4 +11,5 @@ body {
   width: 100%;
   min-height: -webkit-fill-available;
   font-size: 1vw;
+  background-color: $fondo;
 }

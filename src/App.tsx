@@ -1,23 +1,25 @@
 import { useState } from "react";
-import "./App.css";
+import "./App.scss";
 import OptionsSelector from "./components/OptionsSelector";
 import EmailForm from "./components/EmailForm";
 import Success from "./components/Success";
 import { OptionValue } from "./utils/fetchData";
 import useOptions from "./hooks/useOptions";
-// import Card from "./components/Card";
+import Card from "./components/Card";
 
 export type Step = "step 1" | "step 2" | "success";
 
 function App() {
   const [step, setStep] = useState<Step>("step 1");
-  const [optionSelected, setOptionSelected] = useState<OptionValue | null>(null);
+  const [optionSelected, setOptionSelected] = useState<OptionValue | null>(
+    null
+  );
 
   const options = useOptions();
 
   return (
     <div className="App">
-      <header className="App-header">
+      <div>
         {step === "step 1" && (
           <OptionsSelector
             options={options}
@@ -29,8 +31,8 @@ function App() {
           <EmailForm optionSelected={optionSelected} setStep={setStep} />
         )}
         {step === "success" && <Success setStep={setStep} />}
-        {/* <Card /> */}
-      </header>
+      </div>
+      <Card />
     </div>
   );
 }

@@ -1,0 +1,11 @@
+@use "./styles/variables" as *;
+
+.App {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 100px;
+}
+
+
