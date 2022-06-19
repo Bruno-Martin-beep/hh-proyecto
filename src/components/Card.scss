@@ -1,0 +1,61 @@
+@use "../styles/variables" as *;
+
+.card {
+  position: relative;
+  width: 370px;
+  height: fit-content;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: $sombra;
+  overflow: hidden;
+}
+
+.card-icon-home {
+  position: absolute;
+  left: 20px;
+  padding: 15px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: $sombra;
+  transform: translateY(-60%);
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 20px 30px 20px;
+}
+
+.card-text {
+  margin-top: 10px;
+}
+
+.card-item {
+  display: flex;
+  margin-top: 15px;
+}
+
+.card-item > * + * {
+  margin-left: 10px;
+}
+
+.card-item > p {
+  color: $gris_claro;
+}
+
+.card-button {
+  width: auto;
+  margin-top: 30px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 4px;
+  border: 1px solid $azul;
+  background-color: white;
+  color: $azul;
+  transition: background-color 250ms cubic-bezier(0.33, 1, 0.68, 1), color 250ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.card-button:hover {
+  background-color: $azul;
+  color: white;
+}
