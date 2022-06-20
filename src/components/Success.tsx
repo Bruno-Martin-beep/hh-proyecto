@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import "./Success.scss";
 import { Step } from "../App";
 import iconSuccess from "../assets/icon-success.svg";
 
@@ -12,13 +13,19 @@ const Success = ({ setStep }: Props) => {
   };
 
   return (
-    <div>
-      <img src={iconSuccess} alt="" />
-      <h2>Gracias por completar nuestro formulario.</h2>
-      <button type="button" onClick={() => handleClick()}>
+    <>
+      <img src={iconSuccess} alt="" className="icon-success" />
+      <h2 className="success-text">
+        Gracias por completar nuestro formulario.
+      </h2>
+      <button
+        type="button"
+        className="submit-button"
+        onClick={() => handleClick()}
+      >
         volver
       </button>
-    </div>
+    </>
   );
 };
 
