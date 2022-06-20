@@ -1,0 +1,44 @@
+@use "../styles/variables" as *;
+
+.options-text {
+  width: 370px;
+}
+
+.options-form {
+  margin-top: 20px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 25px 20px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: $sombra;
+  transition: border-color 250ms cubic-bezier(0.33, 1, 0.68, 1);
+  cursor: pointer;
+}
+
+.option.active {
+  border: 2px solid $naranja;
+}
+
+.option > * + * {
+  margin-left: 20px;
+}
+
+.option-image {
+  width: 60px;
+  border-radius: 4px;
+}
+
+.option-text {
+  flex-grow: 1;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2em;
+  text-align: start;
+}
