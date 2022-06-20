@@ -8,4 +8,33 @@
   margin-top: 100px;
 }
 
+.App > * + * {
+  margin-left: 100px;
+}
 
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  height: fit-content;
+}
+
+.submit-button {
+  align-self: flex-end;
+  float: right;
+  width: fit-content;
+  padding: 15px 45px;
+  border: 2px solid $naranja;
+  border-radius: 4px;
+  margin-top: 60px;
+  background-color: $naranja;
+  color: white;
+  transition: background-color 250ms cubic-bezier(0.33, 1, 0.68, 1),
+    color 250ms cubic-bezier(0.33, 1, 0.68, 1);
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: white;
+  color: $naranja;
+}

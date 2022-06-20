@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="form">
         {step === "step 1" && (
           <OptionsSelector
             options={options}
