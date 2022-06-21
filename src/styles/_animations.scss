@@ -1,0 +1,19 @@
+@keyframes icon-success {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes icon-success-path {
+  0% {
+    stroke-dasharray: 21;
+    stroke-dashoffset: 21;
+  }
+  100% {
+    stroke-dasharray: 21;
+    stroke-dashoffset: 0;
+  }
+}
