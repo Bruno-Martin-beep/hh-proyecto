@@ -20,7 +20,7 @@ export const getData = async (): Promise<Option[]> => {
   return data;
 };
 
-interface Info {
+export interface Info {
   email: string;
   option: OptionValue;
 }
