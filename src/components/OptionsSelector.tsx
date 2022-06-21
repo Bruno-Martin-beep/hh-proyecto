@@ -38,6 +38,7 @@ const OptionsSelector = ({ options, setOptionSelected, setStep }: Props) => {
           <button
             key={option.value}
             type="button"
+            data-testid="option-button"
             className={classNames("option", {
               active: currentOption === option.value,
             })}
