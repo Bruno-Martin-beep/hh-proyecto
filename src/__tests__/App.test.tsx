@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 
-test("renders learn react link", async () => {
+test("Rendering App", async () => {
   render(<App />);
 
   const optionsButtons = await screen.findAllByTestId("option-button");

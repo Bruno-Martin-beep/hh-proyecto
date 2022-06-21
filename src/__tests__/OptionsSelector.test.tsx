@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import OptionsSelector from "../components/OptionsSelector";
 import { Option } from "../utils/fetchData";
 
-test("Display the OptionsSelector component", () => {
+test("When clicking options", () => {
   const options: Option[] = [
     {
       value: "A",
