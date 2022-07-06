@@ -27,7 +27,7 @@ const Success = ({ setStep }: Props) => {
           className="icon-success-path"
           d="M9.12 15.904l4.054 4.864 10.538-9.728"
           stroke="#fff"
-          stroke-width="2"
+          strokeWidth="2"
         />
         <defs>
           <linearGradient
@@ -38,8 +38,8 @@ const Success = ({ setStep }: Props) => {
             y2="3.2"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#FF7500" />
-            <stop offset="1" stop-color="#FD9D00" />
+            <stop stopColor="#FF7500" />
+            <stop offset="1" stopColor="#FD9D00" />
           </linearGradient>
         </defs>
       </svg>
