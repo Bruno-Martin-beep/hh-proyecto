@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import OptionsSelector from "../components/OptionsSelector";
 import { Option } from "../utils/fetchData";
 
-test("When clicking options", () => {
+const renderOptions = () => {
   const options: Option[] = [
     {
       value: "A",
@@ -29,6 +29,10 @@ test("When clicking options", () => {
       setStep={() => {}}
     />
   );
+};
+
+test("When clicking options", () => {
+  renderOptions();
 
   const optionsButtons = screen.getAllByTestId("option-button");
 
@@ -54,6 +58,27 @@ test("When clicking options", () => {
 
   expect(optionsButtons[0]).not.toHaveClass("active");
   expect(optionsButtons[1]).toHaveClass("active");
+  expect(optionsButtons[2]).not.toHaveClass("active");
+
+  userEvent.click(optionsButtons[2]);
+
+  expect(optionsButtons[0]).not.toHaveClass("active");
+  expect(optionsButtons[1]).not.toHaveClass("active");
+  expect(optionsButtons[2]).toHaveClass("active");
+});
+
+
+test("When double-click option", () => {
+  renderOptions();
+
+  const optionsButtons = screen.getAllByTestId("option-button");
+
+  expect(optionsButtons[0]).toBeVisible();
+  expect(optionsButtons[1]).toBeVisible();
+  expect(optionsButtons[2]).toBeVisible();
+
+  expect(optionsButtons[0]).not.toHaveClass("active");
+  expect(optionsButtons[1]).not.toHaveClass("active");
   expect(optionsButtons[2]).not.toHaveClass("active");
 
   userEvent.click(optionsButtons[2]);
