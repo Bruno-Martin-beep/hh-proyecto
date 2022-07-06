@@ -1,12 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { setupServer } from "msw/lib/node";
 import EmailForm from "../components/EmailForm";
-import { OptionValue } from "../utils/fetchData";
+import { mockCorrectEmail } from "../utils/mock/fetchData";
+
+const server = setupServer(mockCorrectEmail);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
 
 test("when typing a correct email", async () => {
-  const optionSelected: OptionValue = "A";
-
-  render(<EmailForm optionSelected={optionSelected} setStep={() => {}} />);
+  render(<EmailForm optionSelected={"A"} setStep={() => {}} />);
 
   const input = screen.getByRole("textbox");
   const submit = screen.getByText("enviar");
@@ -26,10 +32,9 @@ test("when typing a correct email", async () => {
   expect(textError).toBeNull();
 });
 
-test("when typing a wrong email", () => {
-  const optionSelected: OptionValue = "B";
 
-  render(<EmailForm optionSelected={optionSelected} setStep={() => {}} />);
+test("when typing a wrong email", () => {
+  render(<EmailForm optionSelected={"B"} setStep={() => {}} />);
 
   const input = screen.getByRole("textbox");
   const submit = screen.getByText("enviar");
@@ -47,12 +52,11 @@ test("when typing a wrong email", () => {
     "Por favor, ingresá un correo electrónico válido."
   );
   expect(textError).toBeVisible();
-}) 
+});
+
 
 test("when typing a empty email", () => {
-  const optionSelected: OptionValue = "C";
-
-  render(<EmailForm optionSelected={optionSelected} setStep={() => {}} />);
+  render(<EmailForm optionSelected={"C"} setStep={() => {}} />);
 
   const input = screen.getByRole("textbox");
   const submit = screen.getByText("enviar");
@@ -69,4 +73,4 @@ test("when typing a empty email", () => {
     "Por favor, ingresá un correo electrónico válido."
   );
   expect(textError).toBeVisible();
-}) 
+});

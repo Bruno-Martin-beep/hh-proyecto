@@ -1,4 +1,17 @@
+import { setupServer } from "msw/node";
 import { getData, Info, Option, postData, Response } from "../utils/fetchData";
+import {
+  mockCorrectEmail,
+  mockEmptyEmail,
+  mockOptions,
+  mockWrongEmail,
+} from "../utils/mock/fetchData";
+
+const server = setupServer(mockOptions, mockCorrectEmail);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 test("Get info from api", async () => {
   const expectedValue: Option[] = [
@@ -25,30 +38,44 @@ test("Get info from api", async () => {
   expect(actualValue).toEqual(expectedValue);
 });
 
-test("Post info to api", async () => {
+test("post a correct mail", async () => {
   const expectedCorrectValue: Response = { error: false, message: "Éxito." };
+
+  const inputCorrect: Info = { email: "juan@example.com", option: "A" };
+
+  const correctValue = await postData(inputCorrect);
+
+  expect(correctValue).toBeDefined();
+  expect(correctValue).toEqual(expectedCorrectValue);
+});
+
+test("post a wrong mail", async () => {
+  server.use(mockWrongEmail);
+
   const expectedWrongValue: Response = {
     error: true,
     message: "Formato de email inválido.",
   };
+
+  const inputWrongEmail: Info = { email: "@examplecom", option: "B" };
+
+  const wrongValue = await postData(inputWrongEmail);
+
+  expect(wrongValue).toBeDefined();
+  expect(wrongValue).toEqual(expectedWrongValue);
+});
+
+test("post a empty mail", async () => {
+  server.use(mockEmptyEmail);
+
   const expectedEmptyValue: Response = {
     error: true,
     message: "Falta el email.",
   };
 
-  const inputCorrect: Info = { email: "juan@example.com", option: "A" };
-  const inputWrongEmail: Info = { email: "@examplecom", option: "B" };
   const inputEmptyEmail: Info = { email: "", option: "C" };
 
-  const correctValue = await postData(inputCorrect);
-  const wrongValue = await postData(inputWrongEmail);
   const emptyValue = await postData(inputEmptyEmail);
-
-  expect(correctValue).toBeDefined();
-  expect(correctValue).toEqual(expectedCorrectValue);
-
-  expect(wrongValue).toBeDefined();
-  expect(wrongValue).toEqual(expectedWrongValue);
 
   expect(emptyValue).toBeDefined();
   expect(emptyValue).toEqual(expectedEmptyValue);
